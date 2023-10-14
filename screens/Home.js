@@ -3,10 +3,9 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./home.style";
 import { Ionicons, Fontisto } from "@expo/vector-icons";
-import { Welcome } from "../components";
+import { Welcome, ProductRow } from "../components";
 import Carousel from "../components/home/Carousel";
 import Headings from "../components/home/Headings";
-import ProductRow from "../components/products/ProductRow";
 
 const Home = () => {
   return (

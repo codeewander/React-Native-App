@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { Text, View, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 import styles from "./productDetails.style";
 import {
@@ -8,8 +8,11 @@ import {
   Fontisto,
 } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../constants";
+import { useRoute } from "@react-navigation/native";
 
 const ProductDetails = ({ navigation }) => {
+  const route = useRoute();
+  const { item } = route.params;
   const [count, setCount] = useState(1);
 
   const increment = () => {
@@ -37,15 +40,15 @@ const ProductDetails = ({ navigation }) => {
       </View>
       <Image
         source={{
-          uri: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80",
+          uri: item.imageUrl,
         }}
         style={styles.image}
       />
       <View style={styles.details}>
         <View style={styles.titleRow}>
-          <Text style={styles.title}>Product</Text>
+          <Text style={styles.title}>{item.title}</Text>
           <View style={styles.priceWrapper}>
-            <Text style={styles.price}>$100.3</Text>
+            <Text style={styles.price}>{item.price}</Text>
           </View>
         </View>
         <View style={styles.ratingRow}>
@@ -56,34 +59,18 @@ const ProductDetails = ({ navigation }) => {
             <Text style={styles.ratingText}>(4.9)</Text>
           </View>
           <View style={styles.rating}>
-            <TouchableOpacity
-              onPress={() => {
-                increment();
-              }}
-            >
+            <TouchableOpacity onPress={increment}>
               <SimpleLineIcons name="plus" size={20} />
             </TouchableOpacity>
             <Text style={styles.ratingText}> {count} </Text>
-            <TouchableOpacity
-              onPress={() => {
-                decrement();
-              }}
-            >
+            <TouchableOpacity onPress={decrement}>
               <SimpleLineIcons name="minus" size={20} />
             </TouchableOpacity>
           </View>
         </View>
         <View style={styles.descriptionWrapper}>
           <Text style={styles.description}>Description</Text>
-          <Text style={styles.descText}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Text>
+          <Text style={styles.descText}>{item.description}</Text>
         </View>
         <View style={{ marginBottom: SIZES.small }}>
           <View style={styles.location}>
