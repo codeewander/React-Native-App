@@ -2,9 +2,8 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import styles from "./searchTile.style";
 import { useNavigation } from "@react-navigation/native";
-import { Furniture } from "../../constants/type";
 
-const SearchTile = ({ item }: { item: Furniture }) => {
+const SearchTile = ({ item }) => {
   const navigation = useNavigation();
   return (
     <View>

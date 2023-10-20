@@ -7,6 +7,7 @@ import styles from "./search.style";
 import axios from "axios";
 import { FlatList } from "react-native-gesture-handler";
 import SearchTile from "../components/products/SearchTile";
+import { REACT_APP_END_POINT } from "@env";
 
 const Search = () => {
   const [searchKey, setSearchKey] = useState("");
@@ -15,7 +16,7 @@ const Search = () => {
   const handleSearch = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3000/api/products/search/${searchKey}`
+        `${REACT_APP_END_POINT}/api/products/search/${searchKey}`
       );
       console.log(data, "data");
       setSearchResult(data);

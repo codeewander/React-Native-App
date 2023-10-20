@@ -1,6 +1,8 @@
 import { View, Text } from "react-native";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { REACT_APP_END_POINT } from "@env";
+
 const useFetch = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -9,7 +11,7 @@ const useFetch = () => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const { data } = await axios.get("http://localhost:3000/api/products/");
+      const { data } = await axios.get(`${REACT_APP_END_POINT}/api/products/`);
       setData(data);
     } catch (error) {
       setError(error);
